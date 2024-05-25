@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yanpin Chouli">
+
+
+    <meta name="subtitle" content="探索網頁開發及更多">
+
+
+    <meta name="description" content="Yanpin 的部落格，專注分享網頁開發、JavaScript、Python，以及讀書心得。">
+
+
+    <meta name="keywords" content="網頁開發, JavaScript, Python, 自我成長, 讀書心得, 高中生, 台灣">
+
+
+
+
+<title>Case study: How does a bike-share navigate speedy success? | Yanpin&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 7.2.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Yanpin&#39;s Blog.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">首頁</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">文章列表</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">標籤</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E4%BD%9C%E5%93%81/">
+                            作品
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90/">
+                            資料分析
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Case study: How does a bike-share navigate speedy success?
+            
+            
+        </div>
+        <span class="post-date">
+            2023-12-30
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/2023/12/30/bike-share-case-study/cover.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="Case-Background"><a href="#Case-Background" class="headerlink" title="Case Background"></a>Case Background</h1><p><em>In 2016, Cyclistic launched a successful bike-share oering. Since then, the program has grown to a eet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime.</em></p>
+<p><em>Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. One approach that helped make these things possible was the exibility of its pricing plans: single-ride passes, full-day passes, and annual memberships. Customers who purchase single-ride or full-day passes are referred to as casual riders. Customers who purchase annual memberships are Cyclistic members.</em></p>
+<p><em>Cyclistic’s nance analysts have concluded that annual members are much more protable than casual riders. Although the pricing exibility helps Cyclistic aract more customers, Moreno believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a solid opportunity to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.</em></p>
+<p><em>Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the team needs to beer understand how annual members and casual riders dier, why casual riders would buy a membership, and how digital media could aect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends.</em></p>
+<h2 id="What-question-I’m-trying-to-answer"><a href="#What-question-I’m-trying-to-answer" class="headerlink" title="What question I’m trying to answer"></a>What question I’m trying to answer</h2><p><strong>Q: how do annual members and casual riders use Cyclistic bikes differently?</strong></p>
+<h3 id="How-do-these-insights-help-to-drive-business-decisions"><a href="#How-do-these-insights-help-to-drive-business-decisions" class="headerlink" title="How do these insights help to drive business decisions?"></a>How do these insights help to drive business decisions?</h3><p>By delving into the behavioral patterns of annual members and casual riders, we can identify elements that resonate with them and understand the factors that lead casual riders to become annual members. This information can be used to optimize marketing strategies, such as promoting specific features or services that attract casual riders or designing personalized promotional activities for potential annual members.</p>
+<hr>
+<h1 id="What-tools-were-used-for-this-analysis"><a href="#What-tools-were-used-for-this-analysis" class="headerlink" title="What tools were used for this analysis?"></a>What tools were used for this analysis?</h1><ul>
+<li>R-Language</li>
+<li>R-Packages:<ul>
+<li>tidyverse</li>
+<li>ggplot2</li>
+<li>scales</li>
+<li>dplyr</li>
+<li>hms</li>
+<li>DescTools</li>
+</ul>
+</li>
+</ul>
+<h1 id="What-data-was-used-for-this-analysis"><a href="#What-data-was-used-for-this-analysis" class="headerlink" title="What data was used for this analysis?"></a>What data was used for this analysis?</h1><ul>
+<li><strong>Data Name:</strong> <em>Cyclistic Trip Data</em></li>
+<li><strong>Source:</strong> <a target="_blank" rel="noopener" href="https://divvy-tripdata.s3.amazonaws.com/index.html">Cyclistic Trip Data</a></li>
+<li><strong>Time Interval:</strong> December 2022 to November 2023</li>
+</ul>
+<p><em>Note: The datasets have a different name because Cyclistic is a fictional company. However, for the purposes of this case study, these datasets are appropriate and will enable you to answer the business questions. The data has been made available by Motivate International Inc. under this license.</em></p>
+<h1 id="Data-Preparing"><a href="#Data-Preparing" class="headerlink" title="Data Preparing"></a>Data Preparing</h1><h3 id="Import-cyclistic-trip-datas-from-2022-12-to-2023-11"><a href="#Import-cyclistic-trip-datas-from-2022-12-to-2023-11" class="headerlink" title="Import cyclistic_trip_datas from 2022-12 to 2023-11"></a>Import cyclistic_trip_datas from 2022-12 to 2023-11</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cyclistic_trip_data_202212 <span class="operator">&lt;-</span> read_csv<span class="punctuation">(</span><span class="string">&quot;202212-divvy-tripdata.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">cyclistic_trip_data_202301 <span class="operator">&lt;-</span> read_csv<span class="punctuation">(</span><span class="string">&quot;202301-divvy-tripdata.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">cyclistic_trip_data_202302 <span class="operator">&lt;-</span> read_csv<span class="punctuation">(</span><span class="string">&quot;202302-divvy-tripdata.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">...</span><br><span class="line">cyclistic_trip_data_202311 <span class="operator">&lt;-</span> read_csv<span class="punctuation">(</span><span class="string">&quot;202311-divvy-tripdata.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Combine-all-data-into-one-data-frame"><a href="#Combine-all-data-into-one-data-frame" class="headerlink" title="Combine all data into one data frame"></a>Combine all data into one data frame</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cyclistic_trip_datas <span class="operator">&lt;-</span> rbind<span class="punctuation">(</span> cyclistic_trip_data_202212<span class="punctuation">,</span> </span><br><span class="line">cyclistic_trip_data_202301<span class="punctuation">,</span> cyclistic_trip_data_202302<span class="punctuation">,</span> </span><br><span class="line">cyclistic_trip_data_202303<span class="punctuation">,</span> cyclistic_trip_data_202304<span class="punctuation">,</span> </span><br><span class="line">cyclistic_trip_data_202305<span class="punctuation">,</span> cyclistic_trip_data_202306<span class="punctuation">,</span> </span><br><span class="line">cyclistic_trip_data_202307<span class="punctuation">,</span> cyclistic_trip_data_202308<span class="punctuation">,</span> </span><br><span class="line">cyclistic_trip_data_202309<span class="punctuation">,</span> cyclistic_trip_data_202310<span class="punctuation">,</span> </span><br><span class="line">cyclistic_trip_data_202311 <span class="punctuation">)</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h1><p>Remove incomplete data</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cleaned_cyclistic_trip_datas <span class="operator">&lt;-</span> na.omit<span class="punctuation">(</span>cyclistic_trip_datas<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>Create columns for ride length, day of the week, month, and quarter, and hour of day columns to calculate ride length and the day of the week</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">preprocessed_cyclistic_trip_datas <span class="operator">&lt;-</span> cleaned_cyclistic_trip_datas <span class="operator">%&gt;%</span></span><br><span class="line">  mutate<span class="punctuation">(</span></span><br><span class="line">    ride_length <span class="operator">=</span> as_hms<span class="punctuation">(</span>ended_at <span class="operator">-</span> started_at<span class="punctuation">)</span><span class="punctuation">,</span>  <span class="comment"># Calculate ride length</span></span><br><span class="line">    day_of_week <span class="operator">=</span> format<span class="punctuation">(</span>started_at<span class="punctuation">,</span> <span class="string">&quot;%A&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span>       <span class="comment"># Extract day of the week</span></span><br><span class="line">    month <span class="operator">=</span> format<span class="punctuation">(</span>started_at<span class="punctuation">,</span> <span class="string">&quot;%Y%m&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span>           <span class="comment"># Extract month in YYYYMM format</span></span><br><span class="line">    quarter <span class="operator">=</span> quarters<span class="punctuation">(</span>started_at<span class="punctuation">)</span><span class="punctuation">,</span>               <span class="comment"># Extract quarter</span></span><br><span class="line">    hour_of_day <span class="operator">=</span> hour<span class="punctuation">(</span>started_at<span class="punctuation">)</span>                <span class="comment"># Extract hour of day</span></span><br><span class="line">  <span class="punctuation">)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Change the sorting of the day_of_week column to the correct order</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">preprocessed_cyclistic_trip_datas<span class="operator">$</span>day_of_week <span class="operator">&lt;-</span> factor<span class="punctuation">(</span></span><br><span class="line">  preprocessed_cyclistic_trip_datas<span class="operator">$</span>day_of_week<span class="punctuation">,</span> </span><br><span class="line">  levels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Monday&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tuesday&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wednesday&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thursday&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Friday&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Saturday&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Sunday&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Start-Analyzing"><a href="#Start-Analyzing" class="headerlink" title="Start Analyzing"></a>Start Analyzing</h1><p>To answer the question <em>“How do annual members and casual riders use Cyclist bikes differently?”</em>, I analyzed and observed a couple of aspects.</p>
+<p>First, I examined whether annual members and casual riders differed in peak bike usage times, including the season of the year, time of day, and day of the week. Then, I looked at whether there were differences in bike ride length between annual members and casual riders.</p>
+<p>These observations aim to gain a comprehensive understanding of the distinctions in bike usage between annual members and casual riders, laying the groundwork for further analysis and conclusions.</p>
+<h3 id="Here-is-what-I-found-in-this-analysis"><a href="#Here-is-what-I-found-in-this-analysis" class="headerlink" title="Here is what I found in this analysis:"></a>Here is what I found in this analysis:</h3><ol>
+<li><p>The distribution of quarterly trips indicates whether members or casual riders are more willing to use bikes in the third quarter (Q3).<br><img src="https://i.imgur.com/66kHkI7.png" alt="enter image description here"><br><img src="https://i.imgur.com/LO4m8bP.png" alt="enter image description here"></p>
+</li>
+<li><p>The weekly distribution shows that annual members’ peak usage is on Tuesdays, Wednesdays, and Thursdays, while casual riders peak on Saturdays.<br><img src="https://i.imgur.com/nMnx8YB.png" alt="enter image description here"></p>
+</li>
+<li><p>Annual members tended to use bikes during typical commuting hours, whereas casual riders were more active in the afternoons.<br><img src="https://i.imgur.com/22UyHk8.png" alt="enter image description here"></p>
+</li>
+<li><p>But as I explored further, I discovered, that on weekends, peak usage times of the day for annual members shifted to the afternoon, while casual riders showed consistent patterns on both weekdays and weekends.<br><img src="https://i.imgur.com/ePjTssy.png" alt="enter image description here"></p>
+</li>
+<li><p>Lastly, I found that casual riders exhibited significantly longer average ride durations compared to annual members, indicating a distinct difference in the time spent on bike rides.<br><img src="https://i.imgur.com/JIMRofx.png" alt="enter image description here"></p>
+</li>
+</ol>
+<hr>
+<h1 id="Recommendation-and-Next-Step"><a href="#Recommendation-and-Next-Step" class="headerlink" title="Recommendation and Next Step"></a>Recommendation and Next Step</h1><p>Based on findings, here are some insights and recommendations:</p>
+<ol>
+<li><p><strong>Peak Period Considerations:</strong></p>
+<ul>
+<li>Given that annual members exhibit higher usage on Tuesdays, Wednesdays, and Thursdays, consider increasing bike availability on these days to meet their demand.</li>
+<li>The significant increase in casual ridership on Saturdays, likely driven by leisure activities, suggests an opportunity to offer special events or promotions on this day to attract more casual riders.</li>
+</ul>
+</li>
+<li><p><strong>Distribution of Peak Periods Throughout the Day:</strong></p>
+<ul>
+<li>Understanding that annual members predominantly use bikes during commute hours, consider enhancing services during these periods, such as increasing the number of stations or bikes available.</li>
+<li>With casual riders showing a concentration in afternoon usage, align marketing efforts during this time to attract more casual riders seeking leisurely bike rides.</li>
+</ul>
+</li>
+<li><p><strong>Usage Patterns Between Members and Non-Members:</strong></p>
+<ul>
+<li>Recognizing that casual riders tend to have longer average ride durations, it implies a preference for extended bike riding experiences. Consider providing more diverse route options and enhancing comfort features to cater to their needs.</li>
+<li>For annual members, who likely prioritize shorter commuting needs, explore options to offer quicker, convenient ride choices to accommodate their brief commuting requirements.</li>
+</ul>
+</li>
+</ol>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2024/02/15/productivity-tools-trap-personal-experience/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/06/04/one-year-learning-journey-alphacamp-graduation/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                ©2024 Yanpin Chouli | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

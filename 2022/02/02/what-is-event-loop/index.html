@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yanpin Chouli">
+
+
+    <meta name="subtitle" content="探索網頁開發及更多">
+
+
+    <meta name="description" content="Yanpin 的部落格，專注分享網頁開發、JavaScript、Python，以及讀書心得。">
+
+
+    <meta name="keywords" content="網頁開發, JavaScript, Python, 自我成長, 讀書心得, 高中生, 台灣">
+
+
+
+
+<title>什麼是 event loop ? JavaScript | Yanpin&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 7.2.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Yanpin&#39;s Blog.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">首頁</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">文章列表</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">標籤</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/">
+                            技術筆記
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">
+                            網頁開發
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                什麼是 event loop ? JavaScript
+            
+            
+        </div>
+        <span class="post-date">
+            2022-02-02
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/2022/02/02/what-is-event-loop/cover.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <blockquote>
+<p>本文章參考至：<br><a target="_blank" rel="noopener" href="https://youtu.be/8aGhZQkoFbQ?si=iRV10wRcU9s-aC0s">所以說event loop到底是什麼玩意兒？| Philip Roberts | JSConf EU</a></p>
+<p><a target="_blank" rel="noopener" href="https://emilywalkdone.blogspot.com/2021/01/JavaScript-EVENT-LOOP.html">【JavaScript 筆記】所以事件循環 Event Loop 到底是什麼？setTimeout 0 的藝術 ─ 我 OK、你先請？</a></p>
+</blockquote>
+<br>
+
+<h3 id="了解-Event-Loop-之前必須要先了解的專有名詞"><a href="#了解-Event-Loop-之前必須要先了解的專有名詞" class="headerlink" title="了解 Event Loop 之前必須要先了解的專有名詞"></a>了解 Event Loop 之前必須要先了解的專有名詞</h3><h4 id="Stack-堆疊"><a href="#Stack-堆疊" class="headerlink" title="Stack(堆疊):"></a>Stack(堆疊):</h4><p>資料型態的一種，特性是 <strong>“先進後出”</strong> 。</p>
+<img src="https://i.imgur.com/LzS8Xg1.gif" style="width: 50%;"/>
+
+
+<h4 id="Queue-佇列"><a href="#Queue-佇列" class="headerlink" title="Queue(佇列):"></a>Queue(佇列):</h4><p>資料型態的一種，特性是 <strong>“先進先出”</strong> 。</p>
+<img src="https://i.imgur.com/OtelD21.gif" style="width: 50%;"/>  
+<br>
+<br>
+<br>
+
+<hr>
+<h1 id="JavaScript-是如何運作的？"><a href="#JavaScript-是如何運作的？" class="headerlink" title="JavaScript 是如何運作的？"></a>JavaScript 是如何運作的？</h1><p>我們知道 JavaScript 是單線程型(single threaded)的程式語言，程式碼片段會以 Stack 的方式執行，所以一次只會執行一個程式碼片段，執行完之後才會換下一個。</p>
+<p>程式碼的執行順序，是由最上方的程式碼開始，往下逐行執行。</p>
+<p>JavaScript 是以「後進先出」（ LIFO， Last In First Out）執行堆疊（call stack）。而執行堆疊（call stack）也可以理解為是「執行當下的紀錄」</p>
+<p>當開始執行程式，會從全域（Global Scope）的主程式（main program）開始執行，當進入某一個函式，便會把這個函式推（push）至執行堆疊（stack）的最上方，以此類推往上疊加並由最上層（也就是最後進入的）開始執行，而當該函式執行結束（return），便會將此函式從原本的最上層抽離（pop off），以此類推。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8aGhZQkoFbQ?si=AMSq9aO8knlDCiC-&amp;start=401" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<blockquote>
+<p>無限迴圈就是因為不斷的疊加新的疊層直到出現問題或當掉。</p>
+</blockquote>
+<h1 id="怎麼樣的情況會導致網頁速度變慢"><a href="#怎麼樣的情況會導致網頁速度變慢" class="headerlink" title="怎麼樣的情況會導致網頁速度變慢?"></a>怎麼樣的情況會導致網頁速度變慢?</h1><p>在了解 JavaScript 的運作方式之後，我們知道當主程式運行到函式時會疊加新的疊層並開始處理。</p>
+<p>但是當函式在處理時，你是不能進行其他動作的，</p>
+<p>而當處理時間太長時，整個網站就會像是”卡住”一樣，這種現象稱為 <strong>“堵塞 blocking”</strong> 。</p>
+<blockquote>
+<p>處理速度的快慢其實並沒有很明確的定義，但我們能還是大概感覺得出來，像是 console.log()很快 、執行 while()迴圈一億次很慢、網站請求很慢、圖片請求很慢… 之類的。</p>
+</blockquote>
+<p>那如果要避免這種狀況，就要用到   非同步回調  ，那麼要如何做到非同步回調呢?</p>
+<p>其實你在進行 DOM 操作設定的事件監聽器時，就已經在運用非同步的概念了，你先把函式準備好但不執行，等到事件發生時再進行處理。</p>
+<p>這邊用一個簡單的例子：</p>
+<img alt="example code" src="https://i.imgur.com/H57fKkt.png" />  
+
+
+<h3 id="我們可以來預想一下這個程式碼會如何運作"><a href="#我們可以來預想一下這個程式碼會如何運作" class="headerlink" title="我們可以來預想一下這個程式碼會如何運作"></a>我們可以來預想一下這個程式碼會如何運作</h3><ul>
+<li>一開始會先執行 console.log(‘A’)，然後移除</li>
+<li>設置事件監聽器，但還不會執行裡面的動作</li>
+<li>然後執行 console.log(‘C’)，並移除</li>
+<li>整個主程式運行完畢</li>
+<li>此時使用者點擊了按鈕，觸發了事件監聽器</li>
+<li>事件監聽器就神奇的出現，並執行了裡面的動作</li>
+<li>執行 console.log(‘B’)，並移除</li>
+<li>之後事件監聽器又默默的消失並等待下次的呼叫</li>
+</ul>
+<p>大概像是這樣</p>
+<p><a target="_blank" rel="noopener" href="https://blogger.googleusercontent.com/img/a/AVvXsEjbfbATtc1QzXDNWQZMa7RUzrIO156r9Wz-gxOphm6OC7nkbYO7NW9bVN2ImvP3-a0h2xBJH8zldbnIQJa18NcxfjwWDIl6-5argYDtWmilnMa2SWgoYAJAYOtZRk0bgJ9J4ZilySzZVuFwQ2SVC8_n5WCfS9ul0fIcctbK-HqBHbrgQ1T45yoo9dkK=s546"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjbfbATtc1QzXDNWQZMa7RUzrIO156r9Wz-gxOphm6OC7nkbYO7NW9bVN2ImvP3-a0h2xBJH8zldbnIQJa18NcxfjwWDIl6-5argYDtWmilnMa2SWgoYAJAYOtZRk0bgJ9J4ZilySzZVuFwQ2SVC8_n5WCfS9ul0fIcctbK-HqBHbrgQ1T45yoo9dkK=w400-h279"></a></p>
+<p><strong>你可能會想問：這是怎麼做到的，事件監聽器躲到哪裡去了？？</strong></p>
+<p>這裡就要解釋一下 Web APIs 了</p>
+<h3 id="Web-APIs"><a href="#Web-APIs" class="headerlink" title="Web APIs"></a>Web APIs</h3><p>Web Apis 為瀏覽器提供的方法，運作於瀏覽器端，由於並不是 JavaScript 引擎的一部份，所以可以與 JavaScript 同時運行。</p>
+<p>常見的 Web Apis 有 DOM、AJAX、setTimeout 詳細的可以看這裡<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/API">MDN Web APIs</a></p>
+<p>而本篇的主角 event loop 就是用於管理在背景運行的各種事件。</p>
+<h1 id="Event-Loop-運作流程"><a href="#Event-Loop-運作流程" class="headerlink" title="Event Loop 運作流程"></a>Event Loop 運作流程</h1><p>Event Loop 本質上就是一個監控器，用於協調各個事件的執行順序，以圖示來理解 Event Loop 的運行過程。</p>
+<p><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhmVp6xnAQRo6X6SY0DYfzz9QJj-1Cd5P-Kt8JcTO3nf8ykyFqNT_fqTa8V2CC7Sd9Yo2SjGYvSI_NHu5BnJzyBlsDlJ2lTsw2AV6dImBbqQamWiKpy26HE5EDz-32IgA5bJeVkl94KGx76fd9r47VQeLFPw0uRBjl1lXLjyn1S3odscT6gQYl07I-C=w566-h640"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="區域介紹"><a href="#區域介紹" class="headerlink" title="區域介紹"></a>區域介紹</h2><h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><p>使用 Stack 資料型態<br>首先程式碼片段會先進到這邊執行，並在執行完成後移出，而非同步的動作進入 Web Apis 區域去做處理。</p>
+<h3 id="Web-APIs-1"><a href="#Web-APIs-1" class="headerlink" title="Web APIs"></a>Web APIs</h3><p>這裡的非同步動作會在瀏覽器背景執行，並且執行沒有先後順序，誰先執行完成就會先進到 Callback Queue 去做等待。</p>
+<h3 id="Callback-Queue"><a href="#Callback-Queue" class="headerlink" title="Callback Queue"></a>Callback Queue</h3><p>使用 Queue 資料型態，透過 event loop 監控並確認 Call Stack 清空後，依序將程式碼片段放回 Call Stack 中執行。</p>
+<h4 id="補充說明："><a href="#補充說明：" class="headerlink" title="補充說明："></a>補充說明：</h4><p>雖然可以透過將程式碼委託給 Web Apis 來達成更流暢的運行，但還是要注意不要同時委託過多的動作導致執行完成時 Callback Queue 被塞住。</p>
+<hr>
+<h1 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h1><p>event loop 的運作機制真的很有趣，想了解非同步就一定得要了解他，至於要如何運用這些去優化你得程式碼，就得讓你自己去摸索了。</p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/02/03/learning-javascript-two-months-review-progress/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                ©2024 Yanpin Chouli | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
