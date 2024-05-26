@@ -10,6 +10,10 @@ h6 {
   margin-top: $margin-l-0;
   margin-bottom: $margin-m-1;
 }
+p {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
 blockquote {
   margin-left: 0;
   margin-right: 0;

@@ -67,43 +67,30 @@
   <div class="flex-container">
     <div class="header-inner">
       <div class="site-brand-container">
-        <a href="/">
-          
-            Yanpin&#39;s Blog.
-          
+        <a href="/" style="font-size: 1.8em">
+           Yanpin&#39;s blog 
         </a>
       </div>
-      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
-        Menu
-      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">Menu</div>
       <nav class="site-nav">
         <ul class="menu-list">
-          
+           
+          <li class="menu-item">
+            <a href="/">首頁</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/">首頁</a>
-              </li> 
-                   
-          
+          <li class="menu-item">
+            <a href="/categories/gallery/">文章列表</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/categories/gallery/">文章列表</a>
-              </li> 
-                   
-          
+          <li class="menu-item">
+            <a href="/tag/">標籤</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/tag/">標籤</a>
-              </li> 
-                   
-          
+          <li class="menu-item">
+            <a href="/archives/">Archive</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/archives/">Archive</a>
-              </li> 
-                   
-          
-          
         </ul>
       </nav>
     </div>
@@ -132,6 +119,12 @@
                             網頁開發
                         </a>
                     </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/JavaScript/">
+                            JavaScript
+                        </a>
+                    </span>    
                            
             
         </div>
@@ -152,8 +145,7 @@
               
     </div>
 </div>
-    <div class="post-content">
-    <blockquote>
+    <div class="post-content" style="letter-spacing: 0.5px"><blockquote>
 <p>本文章參考至：<br><a target="_blank" rel="noopener" href="https://youtu.be/8aGhZQkoFbQ?si=iRV10wRcU9s-aC0s">所以說event loop到底是什麼玩意兒？| Philip Roberts | JSConf EU</a></p>
 <p><a target="_blank" rel="noopener" href="https://emilywalkdone.blogspot.com/2021/01/JavaScript-EVENT-LOOP.html">【JavaScript 筆記】所以事件循環 Event Loop 到底是什麼？setTimeout 0 的藝術 ─ 我 OK、你先請？</a></p>
 </blockquote>
@@ -210,18 +202,18 @@
 <p>而本篇的主角 event loop 就是用於管理在背景運行的各種事件。</p>
 <h1 id="Event-Loop-運作流程"><a href="#Event-Loop-運作流程" class="headerlink" title="Event Loop 運作流程"></a>Event Loop 運作流程</h1><p>Event Loop 本質上就是一個監控器，用於協調各個事件的執行順序，以圖示來理解 Event Loop 的運行過程。</p>
 <p><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhmVp6xnAQRo6X6SY0DYfzz9QJj-1Cd5P-Kt8JcTO3nf8ykyFqNT_fqTa8V2CC7Sd9Yo2SjGYvSI_NHu5BnJzyBlsDlJ2lTsw2AV6dImBbqQamWiKpy26HE5EDz-32IgA5bJeVkl94KGx76fd9r47VQeLFPw0uRBjl1lXLjyn1S3odscT6gQYl07I-C=w566-h640"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="區域介紹"><a href="#區域介紹" class="headerlink" title="區域介紹"></a>區域介紹</h2><h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><p>使用 Stack 資料型態<br>首先程式碼片段會先進到這邊執行，並在執行完成後移出，而非同步的動作進入 Web Apis 區域去做處理。</p>
+<h2 id="區域介紹"><a href="#區域介紹" class="headerlink" title="區域介紹"></a>區域介紹</h2><h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><p>使用 Stack 資料型態<br>首先程式碼片段會先進到這邊執行，並在執行完成後移出，而非同步的動作進入 Web Apis 區域去做處理。</p>
 <h3 id="Web-APIs-1"><a href="#Web-APIs-1" class="headerlink" title="Web APIs"></a>Web APIs</h3><p>這裡的非同步動作會在瀏覽器背景執行，並且執行沒有先後順序，誰先執行完成就會先進到 Callback Queue 去做等待。</p>
 <h3 id="Callback-Queue"><a href="#Callback-Queue" class="headerlink" title="Callback Queue"></a>Callback Queue</h3><p>使用 Queue 資料型態，透過 event loop 監控並確認 Call Stack 清空後，依序將程式碼片段放回 Call Stack 中執行。</p>
 <h4 id="補充說明："><a href="#補充說明：" class="headerlink" title="補充說明："></a>補充說明：</h4><p>雖然可以透過將程式碼委託給 Web Apis 來達成更流暢的運行，但還是要注意不要同時委託過多的動作導致執行完成時 Callback Queue 被塞住。</p>
 <hr>
 <h1 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h1><p>event loop 的運作機制真的很有趣，想了解非同步就一定得要了解他，至於要如何運用這些去優化你得程式碼，就得讓你自己去摸索了。</p>
-
-</div> 
+</div>
 
 <script>
-    window.onload = detectors();
+  window.onload = detectors();
 </script>
+
     <div class="post-footer">
     <div class="h-line-primary"></div>
     <nav class="post-nav">

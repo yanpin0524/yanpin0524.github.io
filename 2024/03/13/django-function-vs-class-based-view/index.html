@@ -20,7 +20,7 @@
 
 
 
-<title>我到底該使用 Function-based view 還是 Class-based view？ 哪個比較好，如何進行選擇？（Django） | Yanpin&#39;s Blog</title>
+<title>到底該使用 Function-based view 還是 Class-based view？ Django | Yanpin&#39;s Blog</title>
 
 
 
@@ -67,43 +67,30 @@
   <div class="flex-container">
     <div class="header-inner">
       <div class="site-brand-container">
-        <a href="/">
-          
-            Yanpin&#39;s Blog.
-          
+        <a href="/" style="font-size: 1.8em">
+           Yanpin&#39;s blog 
         </a>
       </div>
-      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
-        Menu
-      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">Menu</div>
       <nav class="site-nav">
         <ul class="menu-list">
-          
+           
+          <li class="menu-item">
+            <a href="/">首頁</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/">首頁</a>
-              </li> 
-                   
-          
+          <li class="menu-item">
+            <a href="/categories/gallery/">文章列表</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/categories/gallery/">文章列表</a>
-              </li> 
-                   
-          
+          <li class="menu-item">
+            <a href="/tag/">標籤</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/tag/">標籤</a>
-              </li> 
-                   
-          
+          <li class="menu-item">
+            <a href="/archives/">Archive</a>
+          </li>
             
-              <li class="menu-item">
-                <a href="/archives/">Archive</a>
-              </li> 
-                   
-          
-          
         </ul>
       </nav>
     </div>
@@ -132,13 +119,19 @@
                             網頁開發
                         </a>
                     </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/Django/">
+                            Django
+                        </a>
+                    </span>    
                            
             
         </div>
         <div class="post-title">
             
             
-                我到底該使用 Function-based view 還是 Class-based view？ 哪個比較好，如何進行選擇？（Django）
+                到底該使用 Function-based view 還是 Class-based view？ Django
             
             
         </div>
@@ -152,63 +145,49 @@
               
     </div>
 </div>
-    <div class="post-content">
-    <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>Django 對於View的實踐有提供 Function-based 的版本和 Class-based 的版本，但到底該使用哪個對我來說一直是個是個重要的問題，而這篇文章就是為了回答這個問題。</p>
+    <div class="post-content" style="letter-spacing: 0.5px"><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>Django 對於View的實踐有提供 Function-based 的版本和 Class-based 的版本，但到底該使用哪個對我來說一直是個是個重要的問題，而這篇文章就是為了回答這個問題。</p>
 <p>必須先說這兩種並沒有優劣之分並各有優缺點，我們應該要根據實際的狀況做判斷。</p>
 <h2 id="Function-based-View"><a href="#Function-based-View" class="headerlink" title="Function-based View"></a>Function-based View</h2><p>Django最開的時候其實只有提供 Function-based view而它的優缺點在於：</p>
 <h3 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h3><ul>
-<li><p>易於實施</p>
-</li>
-<li><p>好閱讀</p>
-</li>
-<li><p>符合直覺的 code flow</p>
-</li>
-<li><p>可以輕鬆的使用裝飾器</p>
-</li>
-<li><p>適合一次性或特殊的功能</p>
-</li>
+<li>易於實施</li>
+<li>好閱讀</li>
+<li>符合直覺的 code flow</li>
+<li>可以輕鬆的使用裝飾器</li>
+<li>適合一次性或特殊的功能</li>
 </ul>
 <h3 id="缺點"><a href="#缺點" class="headerlink" title="缺點"></a>缺點</h3><ul>
-<li><p>後續難以對程式碼進行擴充</p>
-</li>
-<li><p>想要使用不同 HTTP Method，需要透過撰寫 if else 條件式來實現</p>
-</li>
-<li><p>Function-based view 最大的缺點是“難以重複使用”，所以你必須要一直重複的撰寫相似的邏輯，這違反了DRY原則 (也就是 Don’t repeat yourself)，而這也是 Django 創造 Class-based view 的原因之一。</p>
-</li>
+<li>後續難以對程式碼進行擴充</li>
+<li>想要使用不同 HTTP Method，需要透過撰寫 if else 條件式來實現</li>
+<li>Function-based view 最大的缺點是“難以重複使用”，所以你必須要一直重複的撰寫相似的邏輯，這違反了DRY原則 (也就是 Don’t repeat yourself)，而這也是 Django 創造 Class-based view 的原因之一。</li>
 </ul>
 <blockquote>
 <p>If all objects of a Django project usually have CRUD operations so this code is repeated again and again unnecessarily and this was one of the reasons that the class-based views and generic views were created for solving that problem.</p>
+<p>from_: <a target="_blank" rel="noopener" href="https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b">Django : Class Based Views vs Function Based Views | by Sarthak Kumar | Medium</a>_</p>
 </blockquote>
-<p> from_: <a target="_blank" rel="noopener" href="https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b">Django : Class Based Views vs Function Based Views | by Sarthak Kumar | Medium</a>_</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="Class-based-View"><a href="#Class-based-View" class="headerlink" title="Class-based View"></a>Class-based View</h2><p>Class-based view 並沒有取代 Function-based view，它只是提供了一個替代方案，而 Class-based view 具有以下優缺點：</p>
+<hr>
+<h2 id="Class-based-View"><a href="#Class-based-View" class="headerlink" title="Class-based View"></a>Class-based View</h2><p>Class-based view 並沒有取代 Function-based view，它只是提供了一個替代方案，而 Class-based view 具有以下優缺點：</p>
 <h3 id="優點-1"><a href="#優點-1" class="headerlink" title="優點"></a>優點</h3><ul>
-<li><p>程式碼易於重複使用：在 Class-based view 中，一個view可以被另一個view繼承，並進行修改，也符合DRY原則（CBV有助於減少重複程式碼）。</p>
-</li>
-<li><p>程式碼易於擴展</p>
-</li>
-<li><p>HTTP Method 可以透過 Class instance method 輕易實現</p>
-</li>
-<li><p>可以透過 generic class-based views 快速實現一些常見的功能（像是CRUD）</p>
-</li>
+<li>程式碼易於重複使用：在 Class-based view 中，一個view可以被另一個view繼承，並進行修改，也符合DRY原則（CBV有助於減少重複程式碼）。</li>
+<li>程式碼易於擴展</li>
+<li>HTTP Method 可以透過 Class instance method 輕易實現</li>
+<li>可以透過 generic class-based views 快速實現一些常見的功能（像是CRUD）</li>
 </ul>
 <h3 id="缺點-1"><a href="#缺點-1" class="headerlink" title="缺點"></a>缺點</h3><ul>
-<li><p>程式碼難以閱讀</p>
-</li>
-<li><p>不直覺的 code flow</p>
-</li>
-<li><p>使用裝飾器需要外導入或重寫</p>
-</li>
+<li>程式碼難以閱讀</li>
+<li>不直覺的 code flow</li>
+<li>使用裝飾器需要外導入或重寫</li>
 </ul>
 <p>可以看的出來 Class-based view 基本上就是把 Function-based view 的優缺點整個反轉而已。</p>
+<hr>
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>我覺得大部份的情況我會傾向用 Class-based view，因為它符合<strong>軟體設計原則</strong>，但還是要看狀況而定啦，有的時候反而使用 Function-based view 會是比較好的作法，具體可以參考以下圖表。</p>
 <p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1NgVsYmmLCiwXUy-uE0VLA.jpeg"><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1NgVsYmmLCiwXUy-uE0VLA.jpeg"></a></p>
 <p><em>From: <a target="_blank" rel="noopener" href="https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b">Django : Class Based Views vs Function Based Views | by Sarthak Kumar | Medium</a></em></p>
-
-</div> 
+</div>
 
 <script>
-    window.onload = detectors();
+  window.onload = detectors();
 </script>
+
     <div class="post-footer">
     <div class="h-line-primary"></div>
     <nav class="post-nav">
