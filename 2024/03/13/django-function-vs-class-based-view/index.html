@@ -1,151 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Yanpin Chouli">
-
-
-    <meta name="subtitle" content="探索網頁開發及更多">
-
-
-    <meta name="description" content="Yanpin 的部落格，專注分享網頁開發、JavaScript、Python，以及讀書心得。">
-
-
-    <meta name="keywords" content="網頁開發, JavaScript, Python, 自我成長, 讀書心得, 高中生, 台灣">
-
-
-
-
-<title>到底該使用 Function-based view 還是 Class-based view？ Django | Yanpin&#39;s Blog</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
-</style>
-
-
-
-    <!-- stylesheets list from _config.yml -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
     
-    <link rel="stylesheet" href="/css/style.css">
+    到底該使用 Function-based view 還是 Class-based view？ Django 丨
     
 
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/menu.js"></script>
-    
-
-
-
-
-
-
-
-
-
-
-  <meta name="generator" content="Hexo 7.2.0"></head>
-  <body>
-    <div class="mask-border">
-    </div>
-
-    <div class="wrapper">
-
-      <div class="header">
-  <div class="flex-container">
-    <div class="header-inner">
-      <div class="site-brand-container">
-        <a href="/" style="font-size: 1.8em">
-           Yanpin&#39;s blog 
-        </a>
-      </div>
-      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">Menu</div>
-      <nav class="site-nav">
-        <ul class="menu-list">
-           
-          <li class="menu-item">
-            <a href="/">首頁</a>
-          </li>
-            
-          <li class="menu-item">
-            <a href="/categories/gallery/">文章列表</a>
-          </li>
-            
-          <li class="menu-item">
-            <a href="/tag/">標籤</a>
-          </li>
-            
-          <li class="menu-item">
-            <a href="/archives/">Archive</a>
-          </li>
-            
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main">
-        <div class="flex-container">
-          <article id="post">
+    Yanpin&#39;s blog
+  </title>
 
   
-    <div class="post-head">
-    <div class="post-info">
-        <div class="tag-list">
-            
-                
-                    <span class="post-tag">
-                        <a href="/tags/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/">
-                            技術筆記
-                        </a>
-                    </span>    
-                
-                    <span class="post-tag">
-                        <a href="/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">
-                            網頁開發
-                        </a>
-                    </span>    
-                
-                    <span class="post-tag">
-                        <a href="/tags/Django/">
-                            Django
-                        </a>
-                    </span>    
-                           
-            
-        </div>
-        <div class="post-title">
-            
-            
-                到底該使用 Function-based view 還是 Class-based view？ Django
-            
-            
-        </div>
-        <span class="post-date">
-            2024-03-13
-        </span>
+  <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">Yanpin&#39;s Blog</a>
+    <ul class="nav" style="list-style: none">
+      
+      <li><a href="/archives">文章列表</a></li>
+      
+      <li><a href="/tag">標籤</a></li>
+      
+      <li><a href="/about">關於我</a></li>
+      
+    </ul>
+  </section>
+</header>
+
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title">到底該使用 Function-based view 還是 Class-based view？ Django</div>
+  <div class="post-meta">
+    <div class="date">2024 March 13th</div>
+    <div class="tags">
+      
+      <div class="tag-item">技術筆記</div>
+      
+      <div class="tag-item">網頁開發</div>
+      
+      <div class="tag-item">Django</div>
+      
     </div>
-    <div class="post-img">
-        
-            <img src="/2024/03/13/django-function-vs-class-based-view/cover.png" alt="featured_image">
-              
-    </div>
-</div>
-    <div class="post-content" style="letter-spacing: 0.5px"><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>Django 對於View的實踐有提供 Function-based 的版本和 Class-based 的版本，但到底該使用哪個對我來說一直是個是個重要的問題，而這篇文章就是為了回答這個問題。</p>
+  </div>
+  
+
+  <main class="post-content"><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>Django 對於View的實踐有提供 Function-based 的版本和 Class-based 的版本，但到底該使用哪個對我來說一直是個是個重要的問題，而這篇文章就是為了回答這個問題。</p>
 <p>必須先說這兩種並沒有優劣之分並各有優缺點，我們應該要根據實際的狀況做判斷。</p>
 <h2 id="Function-based-View"><a href="#Function-based-View" class="headerlink" title="Function-based View"></a>Function-based View</h2><p>Django最開的時候其實只有提供 Function-based view而它的優缺點在於：</p>
 <h3 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h3><ul>
@@ -182,68 +109,22 @@
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>我覺得大部份的情況我會傾向用 Class-based view，因為它符合<strong>軟體設計原則</strong>，但還是要看狀況而定啦，有的時候反而使用 Function-based view 會是比較好的作法，具體可以參考以下圖表。</p>
 <p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1NgVsYmmLCiwXUy-uE0VLA.jpeg"><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1NgVsYmmLCiwXUy-uE0VLA.jpeg"></a></p>
 <p><em>From: <a target="_blank" rel="noopener" href="https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b">Django : Class Based Views vs Function Based Views | by Sarthak Kumar | Medium</a></em></p>
-</div>
+</main>
 
-<script>
-  window.onload = detectors();
-</script>
-
-    <div class="post-footer">
-    <div class="h-line-primary"></div>
-    <nav class="post-nav">
-        <div class="prev-item">
-           
-                <div class="icon arrow-left"></div>
-                <div class="post-link">
-                    <a href="/2024/05/26/django-not-show-error-on-production/">Prev</a>
-                </div>
-            
-        </div>
-        <div class="next-item">
-            
-                <div class="icon arrow-right"></div>
-                <div class="post-link">
-                  <a href="/2024/02/15/productivity-tools-trap-personal-experience/">Next</a>  
-                </div>  
-            
-        </div>
-    </nav>
-</div>
-
-    
-      <div class="post-comment">
-
-     
-
-     
-    
-    
-
-</div>
-     
-  
 </article>
-        </div>
-      </div>
-      
-      <div class="footer">
-    <div class="flex-container">
-        <div class="footer-text">
-            
-            
-                ©2024 Yanpin Chouli | 
-            
-            
-                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
-                
-        </div>
-    </div>
-</div>
 
-    </div>
 
-    
-    
+<script src="/js/highlight.js"></script>
 
-  </body>
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2024 Yanpin Chouli</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
 </html>

@@ -1,145 +1,76 @@
 <!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Yanpin Chouli">
-
-
-    <meta name="subtitle" content="探索網頁開發及更多">
-
-
-    <meta name="description" content="Yanpin 的部落格，專注分享網頁開發、JavaScript、Python，以及讀書心得。">
-
-
-    <meta name="keywords" content="網頁開發, JavaScript, Python, 自我成長, 讀書心得, 高中生, 台灣">
-
-
-
-
-<title>Django 正式部署環境下，不會顯示詳細錯誤訊息的解決方案 Sentry | Yanpin&#39;s Blog</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
-</style>
-
-
-
-    <!-- stylesheets list from _config.yml -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
     
-    <link rel="stylesheet" href="/css/style.css">
+    Django 正式部署環境下，不會顯示詳細錯誤訊息的解決方案 Sentry 丨
     
 
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/menu.js"></script>
-    
-
-
-
-
-
-
-
-
-
-
-  <meta name="generator" content="Hexo 7.2.0"></head>
-  <body>
-    <div class="mask-border">
-    </div>
-
-    <div class="wrapper">
-
-      <div class="header">
-  <div class="flex-container">
-    <div class="header-inner">
-      <div class="site-brand-container">
-        <a href="/" style="font-size: 1.8em">
-           Yanpin&#39;s blog 
-        </a>
-      </div>
-      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">Menu</div>
-      <nav class="site-nav">
-        <ul class="menu-list">
-           
-          <li class="menu-item">
-            <a href="/">首頁</a>
-          </li>
-            
-          <li class="menu-item">
-            <a href="/categories/gallery/">文章列表</a>
-          </li>
-            
-          <li class="menu-item">
-            <a href="/tag/">標籤</a>
-          </li>
-            
-          <li class="menu-item">
-            <a href="/archives/">Archive</a>
-          </li>
-            
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main">
-        <div class="flex-container">
-          <article id="post">
+    Yanpin&#39;s blog
+  </title>
 
   
-    <div class="post-head">
-    <div class="post-info">
-        <div class="tag-list">
-            
-                
-                    <span class="post-tag">
-                        <a href="/tags/Django/">
-                            Django
-                        </a>
-                    </span>    
-                
-                    <span class="post-tag">
-                        <a href="/tags/%E8%B8%A9%E5%9D%91%E7%B4%80%E9%8C%84/">
-                            踩坑紀錄
-                        </a>
-                    </span>    
-                           
-            
-        </div>
-        <div class="post-title">
-            
-            
-                Django 正式部署環境下，不會顯示詳細錯誤訊息的解決方案 Sentry
-            
-            
-        </div>
-        <span class="post-date">
-            2024-05-26
-        </span>
+  <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">Yanpin&#39;s Blog</a>
+    <ul class="nav" style="list-style: none">
+      
+      <li><a href="/archives">文章列表</a></li>
+      
+      <li><a href="/tag">標籤</a></li>
+      
+      <li><a href="/about">關於我</a></li>
+      
+    </ul>
+  </section>
+</header>
+
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title">Django 正式部署環境下，不會顯示詳細錯誤訊息的解決方案 Sentry</div>
+  <div class="post-meta">
+    <div class="date">2024 May 26th</div>
+    <div class="tags">
+      
+      <div class="tag-item">Django</div>
+      
+      <div class="tag-item">踩坑紀錄</div>
+      
     </div>
-    <div class="post-img">
-        
-            <img src="/2024/05/26/django-not-show-error-on-production/cover.jpeg" alt="featured_image">
-              
-    </div>
-</div>
-    <div class="post-content" style="letter-spacing: 0.5px"><p>情況是這樣的，我為了確認我客製的404 Page Not Found 頁面CSS樣式沒問題，我把 debug 設定成 False 了</p>
+  </div>
+  
+
+  <main class="post-content"><p>情況是這樣的，我為了確認我客製的404 Page Not Found 頁面CSS樣式沒問題，我把 debug 設定成 False 了</p>
 <p>在那之後我故意輸入錯誤的網址，但…</p>
 <blockquote>
 <p>我的客製 404 Not found 頁面根本沒有顯示出來，反而顯示 500 Internal Server Error</p>
@@ -168,63 +99,22 @@
 </blockquote>
 <p>我打錯 url name，所以 Django template 無法正常載入🥲 (我把 product-list 打錯成 product_list )</p>
 <img alt="圖 1" src="https://i.imgur.com/mS24s1N.png" />  
-</div>
+</main>
 
-<script>
-  window.onload = detectors();
-</script>
-
-    <div class="post-footer">
-    <div class="h-line-primary"></div>
-    <nav class="post-nav">
-        <div class="prev-item">
-           
-        </div>
-        <div class="next-item">
-            
-                <div class="icon arrow-right"></div>
-                <div class="post-link">
-                  <a href="/2024/03/13/django-function-vs-class-based-view/">Next</a>  
-                </div>  
-            
-        </div>
-    </nav>
-</div>
-
-    
-      <div class="post-comment">
-
-     
-
-     
-    
-    
-
-</div>
-     
-  
 </article>
-        </div>
-      </div>
-      
-      <div class="footer">
-    <div class="flex-container">
-        <div class="footer-text">
-            
-            
-                ©2024 Yanpin Chouli | 
-            
-            
-                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
-                
-        </div>
-    </div>
-</div>
 
-    </div>
 
-    
-    
+<script src="/js/highlight.js"></script>
 
-  </body>
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2024 Yanpin Chouli</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
 </html>
